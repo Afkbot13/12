@@ -1,0 +1,48 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'java-library'
+    id 'idea'
+    id 'maven-publish'
+}
+
+group = "re.alwyn974"
+version = "1.0.15"
+archivesBaseName = "MinecraftBOT"
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://jitpack.io"
+    }
+    maven {
+        url "https://alwyn974.github.io/maven"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    implementation "com.github.Steveice10:MCProtocolLib:-SNAPSHOT"
+    implementation 'commons-cli:commons-cli:1.4'
+    implementation "re.alwyn974:logger:1.0.0"
+    implementation 'org.reflections:reflections:0.9.12'
+    implementation 'com.formdev:flatlaf:1.5' //this is magic :o
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "re.alwyn974.minecraft.bot.MinecraftBOT"
+    }
+    from "LICENSE"
+}
